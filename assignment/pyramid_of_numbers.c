@@ -1,9 +1,9 @@
 /*----------------------------------------------------------
  *				HTBLA-Leonding / Class: <your class>
  * ---------------------------------------------------------
- * Exercise Number: 0
+ * Exercise Number: 3
  * Title:			Pyramid of Numbers
- * Author:			<your name>
+ * Author:			Jan Fischlmayr
  * ----------------------------------------------------------
  * Description:
  * Calculates a pyramid of numbers, i.e., it multiplies a big
@@ -13,6 +13,7 @@
  * ----------------------------------------------------------
  */
 #include <stdio.h>
+#include <string.h>
 
 /// The maximum number of digits allowed in a big int.
 #define MAX_DIGITS 80
@@ -34,7 +35,9 @@ struct BigInt {
 *** @param *str The string to be converted.
 *** @param len Number of characters in string to be converted.
 *** @param *big_int The converted string now as BigInt.
-* @return The number of characters converted.
+* @return The numint strtobig_int(const char *str, int len, struct BigInt *big_int);
+int strtobig_int(const char *str, int len, struct BigInt *big_int);
+ber of characters converted.
 */
 int strtobig_int(const char *str, int len, struct BigInt *big_int);
 
@@ -63,6 +66,9 @@ void divide(const struct BigInt *big_int, int divisor, struct BigInt *big_result
 */
 void copy_big_int(const struct BigInt *from, struct BigInt *to);
 
+/** Asks the user for his BigInt*/
+void get_user_input(char* inputNumber);
+
 /**
 *** main() reads the base number from which the pyramid has to be calculated
 *** into an array of char. The max. length of this number is MAX_DIGITS.
@@ -76,5 +82,27 @@ void copy_big_int(const struct BigInt *from, struct BigInt *to);
 */
 int main(int argc, char *argv[])
 {
+	char inputNumber[MAX_DIGITS];
+	int lengthOfCharArray;
+	struct BigInt bigInt;
+
+	printf("Pyramid of Numbers\n");
+	printf("==================\n");
+	get_user_input(inputNumber);
+	lengthOfCharArray = strlen(inputNumber);
+	int bigIntLength = strtobig_int(inputNumber, lengthOfCharArray, &bigInt);
+
 	return 0;
+}
+
+void get_user_input(char* inputNumber) {
+	printf("Enter your Number: \n");
+	scanf("%s\n", inputNumber);
+}
+
+int strtobig_int(const char *str, int len, struct BigInt *big_int)
+{
+	for (size_t i = 0; i < len; i++) {
+		big_int[i].the_int = str[i] - '0';
+	}
 }
