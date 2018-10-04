@@ -80,17 +80,20 @@ void get_user_input(char* inputNumber);
 *** 9 and then again with divide() instead of multiply() from 2 to 9.
 ***
 */
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	char inputNumber[MAX_DIGITS];
 	int lengthOfCharArray;
 	struct BigInt bigInt;
+	struct BigInt bigResult;
 
 	printf("Pyramid of Numbers\n");
 	printf("==================\n");
 	get_user_input(inputNumber);
 	lengthOfCharArray = strlen(inputNumber);
 	int bigIntLength = strtobig_int(inputNumber, lengthOfCharArray, &bigInt);
+	for (size_t i = 2; i < 10; i++) {
+		bigResult->the_int[i] = multiply(bigInt, i, &bigResult);
+	}
 
 	return 0;
 }
@@ -100,9 +103,12 @@ void get_user_input(char* inputNumber) {
 	scanf("%s\n", inputNumber);
 }
 
-int strtobig_int(const char *str, int len, struct BigInt *big_int)
-{
+int strtobig_int(const char *str, int len, struct BigInt *big_int) {
 	for (size_t i = 0; i < len; i++) {
-		big_int[i].the_int = str[i] - '0';
+		big_int->the_int[i] = str[i] - '0';
 	}
+}
+
+void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_result) {
+
 }
