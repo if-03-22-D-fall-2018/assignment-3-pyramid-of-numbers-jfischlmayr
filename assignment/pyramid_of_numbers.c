@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
 	lengthOfCharArray = strlen(inputNumber);
 	int bigIntLength = strtobig_int(inputNumber, lengthOfCharArray, &bigInt);
 	for (size_t i = 2; i < 10; i++) {
-		bigResult->the_int[i] = multiply(bigInt, i, &bigResult);
+	multiply(&bigInt, i, &bigResult);
 	}
 
 	return 0;
@@ -104,9 +104,12 @@ void get_user_input(char* inputNumber) {
 }
 
 int strtobig_int(const char *str, int len, struct BigInt *big_int) {
+	int counter = 0;
 	for (size_t i = 0; i < len; i++) {
 		big_int->the_int[i] = str[i] - '0';
+		counter++;
 	}
+	return counter;
 }
 
 void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_result) {
