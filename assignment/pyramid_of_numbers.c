@@ -91,8 +91,9 @@ int main(int argc, char *argv[]) {
 	get_user_input(inputNumber);
 	lengthOfCharArray = strlen(inputNumber);
 	int bigIntLength = strtobig_int(inputNumber, lengthOfCharArray, &bigInt);
-	for (size_t i = 2; i < 10; i++) {
-	multiply(&bigInt, i, &bigResult);
+	for (int i = 2; i < 10; i++) {
+		multiply(&bigInt, i, &bigResult);
+		printf("%d * %d = %d\n", bigInt.the_int[i - 2], i , bigResult.the_int[i - 2]);
 	}
 
 	return 0;
@@ -113,5 +114,20 @@ int strtobig_int(const char *str, int len, struct BigInt *big_int) {
 }
 
 void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_result) {
+	int overflowNumber=0;
+	for (int i = big_int->digits_count-1 ; i >0; i++) {
+		int tempResult=big_int->the_int[i]*factor;
 
+		if (tempResult>9) {
+				big_result->the_int[i]=tempResult%10+overflowNumber;
+				overflowNumber=tempResult/10;
+		}
+		else{
+			big_result->the_int[i]=tempResult+overflowNumber;
+		}
+	}
+}
+
+void divide(const struct BigInt *big_int, int divisor, struct BigInt *big_result) {
+	
 }
