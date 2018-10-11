@@ -70,7 +70,7 @@ void copy_big_int(const struct BigInt *from, struct BigInt *to);
 /** Asks the user for his BigInt*/
 void get_user_input(char* inputNumber);
 
-void bigintarray_reverse(struct BigInt *big_int);
+void bigIntArrayReverse(struct BigInt *big_int);
 
 /**
 *** main() reads the base number from which the pyramid has to be calculated
@@ -103,18 +103,18 @@ int main(int argc, char *argv[]) {
 
 	for (int i = 2; i < 10; i++) {
 		multiply(&bigInt, i, &bigResult);
-		bigintarray_reverse(&bigResult);
-		bigintarray_reverse(&bigInt);
+		bigIntArrayReverse(&bigResult);
+		bigIntArrayReverse(&bigInt);
 		print_big_int(&bigInt);
 		printf(" * %d = ",i);
 		print_big_int(&bigResult);
 		printf("\n");
-		bigintarray_reverse(&bigResult);
-		bigintarray_reverse(&bigInt);
+		bigIntArrayReverse(&bigResult);
+		bigIntArrayReverse(&bigInt);
 		bigInt = bigResult;
 	}
 
-	bigintarray_reverse(&bigResult);
+	bigIntArrayReverse(&bigResult);
 
 	for (int i = 2; i < 10; i++) {
 		print_big_int(&bigResult);
@@ -194,7 +194,7 @@ void print_big_int(const struct BigInt *big_int)
 		}
 }
 
-void bigintarray_reverse(struct BigInt *big_int)
+void bigIntArrayReverse(struct BigInt *big_int)
 {
 	int i = big_int->digits_count-1;
   int j = 0;
