@@ -87,12 +87,9 @@ int main(int argc, char *argv[]) {
 
 	printf("Pyramid of Numbers\n");
 	printf("==================\n");
-<<<<<<< HEAD
-	get_user_input(&inputNumber);
-	strtobig_int(inputNumber, );
-=======
 	get_user_input(inputNumber);
->>>>>>> 5c460d048ba158146dca6e37d518014e7b407c10
+	strtobig_int(inputNumber, &bigInt);
+	multiply(&bigInt, 2, &bigResult);
 
 	return 0;
 }
@@ -104,12 +101,11 @@ void get_user_input(char *inputNumber) {
 
 int strtobig_int(const char *str, struct BigInt *big_int) {
 	int counter = 0;
-<<<<<<< HEAD
-	stdbool isDigit = true;
+	bool isDigit = true;
 
 	do {
-		if (str[i] - '0' >= 0 &&  str[i] - '0' <= 9) {
-			big_int->the_int[i] = str[i] - '0';
+		if (str[counter] - '0' >= 0 &&  str[counter] - '0' <= 9) {
+			big_int->the_int[counter] = str[counter] - '0';
 			counter++;
 		}
 		else {
@@ -121,14 +117,17 @@ int strtobig_int(const char *str, struct BigInt *big_int) {
 }
 
 void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_result) {
-	for (size_t i = 0; i < big_int->the_int.length; i++) {
-		/* code */
+	int overflow;
+	for (int i = 0; i < sizeof(big_int->the_int)/sizeof(big_int->the_int[0]); i++) {
+		if (big_int->the_int[i] * factor > 9) {
+			overflow = big_int->the_int[i] * factor / 10;
+			big_result->the_int[i] = big_int->the_int[i] * factor % 10 + overflow;
+			overflow = 0;
+		}
+		else {
+			big_result->the_int[i] = big_int->the_int[i] * factor + overflow;
+			overflow = 0;
+		}
+		printf("%d\n", big_result->the_int[i]);
 	}
-=======
-	for (int i = 0; i < len; i++) {
-		big_int->the_int[i] = str[i] - '0';
-		counter++;
-	}
-	return counter;
->>>>>>> 5c460d048ba158146dca6e37d518014e7b407c10
 }
