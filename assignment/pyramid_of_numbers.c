@@ -87,8 +87,12 @@ int main(int argc, char *argv[]) {
 
 	printf("Pyramid of Numbers\n");
 	printf("==================\n");
+<<<<<<< HEAD
 	get_user_input(&inputNumber);
 	strtobig_int(inputNumber, );
+=======
+	get_user_input(inputNumber);
+>>>>>>> 5c460d048ba158146dca6e37d518014e7b407c10
 
 	return 0;
 }
@@ -100,6 +104,7 @@ void get_user_input(char *inputNumber) {
 
 int strtobig_int(const char *str, struct BigInt *big_int) {
 	int counter = 0;
+<<<<<<< HEAD
 	stdbool isDigit = true;
 
 	do {
@@ -119,4 +124,11 @@ void multiply(const struct BigInt *big_int, int factor, struct BigInt *big_resul
 	for (size_t i = 0; i < big_int->the_int.length; i++) {
 		/* code */
 	}
+=======
+	for (int i = 0; i < len; i++) {
+		big_int->the_int[i] = str[i] - '0';
+		counter++;
+	}
+	return counter;
+>>>>>>> 5c460d048ba158146dca6e37d518014e7b407c10
 }
